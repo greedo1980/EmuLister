@@ -1,13 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <roms>
-
   <rom>
-    <title>test 1</title>
-    <romFile>test1.zip</romFile>
+    <title>1943</title>
+    <romFile>1943.zip</romFile>
   </rom>
   <rom>
-    <title>test 2</title>
-    <romFile>test21.zip</romFile>
+    <title>Aliens</title>
+    <romFile>aliens.zip</romFile>
   </rom>
   <rom>
     <title>test 3</title>

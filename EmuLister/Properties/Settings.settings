@@ -2,9 +2,6 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="EmuLister.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="FullScreen" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
-    </Setting>
     <Setting Name="ListHighlightColor" Type="System.Drawing.Color" Scope="User">
       <Value Profile="(Default)">Magenta</Value>
     </Setting>
@@ -15,13 +12,13 @@
       <Value Profile="(Default)">White</Value>
     </Setting>
     <Setting Name="BaseFontName" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Arial</Value>
+      <Value Profile="(Default)">8-bit madness</Value>
     </Setting>
     <Setting Name="PageSize" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">15</Value>
     </Setting>
     <Setting Name="UpperCaseList" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
+      <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="ControllerYes" Type="System.String" Scope="User">
       <Value Profile="(Default)">A</Value>
@@ -47,14 +44,17 @@
     <Setting Name="ShutdownOnQuit" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="RomXmlPath" Type="System.String" Scope="User">
-      <Value Profile="(Default)">C:\Users\gregal01\Documents\Projects\EmuLister\EmuLister\EmuLister\Roms.xml</Value>
-    </Setting>
     <Setting Name="Alphabetize" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="EmulatorPath" Type="System.String" Scope="User">
-      <Value Profile="(Default)">C:\Windows\System32\notepad.exe</Value>
+      <Value Profile="(Default)">C:\Users\Greg\Documents\Visual Studio 2012\Projects\EmuLister-master\EmuLister\ume\ume.exe</Value>
+    </Setting>
+    <Setting Name="FullScreen" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="RomXmlPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\Users\Greg\Documents\Visual Studio 2012\Projects\EmuLister-master\EmuLister\EmuLister\Roms.xml</Value>
     </Setting>
   </Settings>
 </SettingsFile>

@@ -235,7 +235,7 @@ namespace EmuLister
             }
 
             //end of list go to next page
-            if (key == Settings.Default.ControllerDown && ListLinkLabels.IndexOf(currentLinkLabel) == PageSize - 1)
+            if (key == Settings.Default.ControllerDown && ListLinkLabels.IndexOf(currentLinkLabel) == ListLinkLabels.Count - 1)
             {
                 DrawRomList(currentPage + 1);
                 SetFocusListItem(0);
@@ -266,10 +266,13 @@ namespace EmuLister
 
         private void LoadRom(string romFile)
         {
-            Process runExe = new Process();
-            runExe.StartInfo.FileName = Settings.Default.EmulatorPath;
-            Process.Start(runExe.StartInfo.FileName);     
- 
+            Process emulator = new Process();
+            emulator.StartInfo.FileName = Settings.Default.EmulatorPath;
+
+            emulator.StartInfo.Arguments = romFile;
+
+            emulator.Start();
+
             
 
             // iHandle = FindWindow(null, "Calculator");
@@ -300,7 +303,7 @@ namespace EmuLister
 
         private void SetFullScreen()
         {
-            this.TopMost = true;
+           
             this.FormBorderStyle = FormBorderStyle.None;
             this.WindowState = FormWindowState.Maximized;
         }
