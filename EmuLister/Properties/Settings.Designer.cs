@@ -85,7 +85,7 @@ namespace EmuLister.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool UpperCaseList {
             get {
                 return ((bool)(this["UpperCaseList"]));
@@ -205,20 +205,7 @@ namespace EmuLister.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Users\\Greg\\Documents\\Visual Studio 2012\\Projects\\EmuLister-master\\EmuLister\\um" +
-            "e\\ume.exe")]
-        public string EmulatorPath {
-            get {
-                return ((string)(this["EmulatorPath"]));
-            }
-            set {
-                this["EmulatorPath"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool FullScreen {
             get {
                 return ((bool)(this["FullScreen"]));
@@ -238,6 +225,44 @@ namespace EmuLister.Properties {
             }
             set {
                 this["RomXmlPath"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Users\\Greg\\Documents\\Visual Studio 2012\\Projects\\EmuLister-master\\EmuLister\\um" +
+            "e\\ume.exe")]
+        public string EmulatorPath {
+            get {
+                return ((string)(this["EmulatorPath"]));
+            }
+            set {
+                this["EmulatorPath"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Users\\Greg\\Documents\\Visual Studio 2012\\Projects\\EmuLister-master\\EmuLister\\um" +
+            "e")]
+        public string WorkingPath {
+            get {
+                return ((string)(this["WorkingPath"]));
+            }
+            set {
+                this["WorkingPath"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0, 192, 192")]
+        public global::System.Drawing.Color PublisherColor {
+            get {
+                return ((global::System.Drawing.Color)(this["PublisherColor"]));
+            }
+            set {
+                this["PublisherColor"] = value;
             }
         }
     }

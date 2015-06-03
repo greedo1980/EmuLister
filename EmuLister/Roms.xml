@@ -7,22 +7,33 @@
   <rom>
     <title>Aliens</title>
     <romFile>aliens.zip</romFile>
+    <publisher>Konami</publisher>
+    <year>1988</year>
   </rom>
   <rom>
-    <title>test 3</title>
-    <romFile>test3.zip</romFile>
+    <title>Final Fight</title>
+    <romFile>ffight.zip</romFile>
+    <publisher>Capcom</publisher>
+    <year>1988</year>
   </rom>
   <rom>
-    <title>test 4</title>
+    <title>Super Street Fighter II: The New Challengers</title>
     <romFile>test4.zip</romFile>
+    <publisher>Capcom</publisher>
+    <year>1988</year>
   </rom>
   <rom>
-    <title>test 5</title>
+    <title>Shinobi</title>
     <romFile>test5.zip</romFile>
+    <publisher>Sega</publisher>
+    <year>1988</year>
   </rom>
+  
   <rom>
-    <title>test 6</title>
-    <romFile>test6.zip</romFile>
+    <title>Golden Axe</title>
+    <romFile>test5.zip</romFile>
+    <publisher>Sega</publisher>
+    <year>1988</year>
   </rom>
   <rom>
     <title>test 7</title>

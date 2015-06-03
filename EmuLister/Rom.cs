@@ -10,32 +10,44 @@ namespace EmuLister
     {
         public string Title { get; set; }
         public string RomFile { get; set; }
-        public string ClippedTitle
+        public string Year { get; set; }
+        string _publisher;
+
+        public string Publisher
         {
             get
             {
-
-                string result = Title;
-
-                if (Title.Length > 30)
-                    result = Title.Substring(0, 50) + "...";
-
-                return result;
+                if (string.IsNullOrEmpty(_publisher))
+                    return "Unknown";
+                else
+                    return _publisher;
             }
-        }
+            set
+            {
+                _publisher = value;
+            }
+        }       
 
-        public Rom(string title, string romFile)
+        public Rom(string title, string romFile, string year, string publisher)
         {
             Title = title;
             RomFile = romFile;
+            Year = year;
+            _publisher = publisher;
         }
 
         public static List<Rom> GetRoms(int pageSize, int pageIndex)
         {
-
             List<Rom> result = AllRoms();
 
             return result.Skip((pageSize * pageIndex)).Take(pageSize).ToList();
+        }
+
+        public static List<Rom> GetRoms(string publisher, int pageSize, int pageIndex)
+        {
+            List<Rom> result = AllRoms();
+
+            return result.Where(r => r.Publisher == publisher).Skip((pageSize * pageIndex)).Take(pageSize).ToList();
         }
 
         private static List<Rom> AllRoms()
@@ -53,8 +65,15 @@ namespace EmuLister
 
                 string title = romNode["title"].InnerText;
                 string romFile = romNode["romFile"].InnerText;
+                string year = null;
+                if (romNode["year"] != null)
+                    year = romNode["year"].InnerText;
 
-                result.Add(new Rom(title, romFile));
+                string publisher = null;
+                if (romNode["publisher"] != null)
+                    publisher = romNode["publisher"].InnerText;
+
+                result.Add(new Rom(title, romFile, year, publisher));
             }
 
 
@@ -63,5 +82,46 @@ namespace EmuLister
             else
                 return result;
         }
+
+
+
+        public static string FirstPublisher()
+        {
+            List<Rom> roms = AllRoms();
+
+            return roms.OrderBy(r => r.Publisher).First().Publisher;
+        }
+
+        public static string LastPublisher()
+        {
+            List<Rom> roms = AllRoms();
+
+            return roms.OrderBy(r => r.Publisher).Last().Publisher;
+        }
+
+        public static string NextPublisher(string publisher)
+        {
+            if (publisher == LastPublisher())
+                return FirstPublisher();
+
+            List<Rom> roms = AllRoms();
+
+            List<string> publishers = roms.OrderBy(r => r.Publisher).Select(r => r.Publisher).Distinct().ToList();
+
+            return publishers[publishers.IndexOf(publisher) + 1];
+        }
+
+        public static string PreviousPublisher(string publisher)
+        {
+            if (publisher == FirstPublisher())
+                return LastPublisher();
+
+            List<Rom> roms = AllRoms();
+
+            List<string> publishers = roms.OrderBy(r => r.Publisher).Select(r => r.Publisher).Distinct().ToList();
+
+            return publishers[publishers.IndexOf(publisher) - 1];
+        }
     }
+
 }

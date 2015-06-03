@@ -18,7 +18,7 @@
       <Value Profile="(Default)">15</Value>
     </Setting>
     <Setting Name="UpperCaseList" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
+      <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="ControllerYes" Type="System.String" Scope="User">
       <Value Profile="(Default)">A</Value>
@@ -47,14 +47,20 @@
     <Setting Name="Alphabetize" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="EmulatorPath" Type="System.String" Scope="User">
-      <Value Profile="(Default)">C:\Users\Greg\Documents\Visual Studio 2012\Projects\EmuLister-master\EmuLister\ume\ume.exe</Value>
-    </Setting>
     <Setting Name="FullScreen" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
+      <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="RomXmlPath" Type="System.String" Scope="User">
       <Value Profile="(Default)">C:\Users\Greg\Documents\Visual Studio 2012\Projects\EmuLister-master\EmuLister\EmuLister\Roms.xml</Value>
+    </Setting>
+    <Setting Name="EmulatorPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\Users\Greg\Documents\Visual Studio 2012\Projects\EmuLister-master\EmuLister\ume\ume.exe</Value>
+    </Setting>
+    <Setting Name="WorkingPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\Users\Greg\Documents\Visual Studio 2012\Projects\EmuLister-master\EmuLister\ume</Value>
+    </Setting>
+    <Setting Name="PublisherColor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">0, 192, 192</Value>
     </Setting>
   </Settings>
 </SettingsFile>
