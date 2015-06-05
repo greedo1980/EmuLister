@@ -15,7 +15,7 @@
       <Value Profile="(Default)">8-bit madness</Value>
     </Setting>
     <Setting Name="PageSize" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">15</Value>
+      <Value Profile="(Default)">10</Value>
     </Setting>
     <Setting Name="UpperCaseList" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
@@ -48,19 +48,34 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="FullScreen" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
+      <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="RomXmlPath" Type="System.String" Scope="User">
-      <Value Profile="(Default)">C:\Users\Greg\Documents\Visual Studio 2012\Projects\EmuLister-master\EmuLister\EmuLister\Roms.xml</Value>
+      <Value Profile="(Default)">C:\Users\Greg\Source\Repos\EmuLister\EmuLister\Roms.xml</Value>
     </Setting>
     <Setting Name="EmulatorPath" Type="System.String" Scope="User">
-      <Value Profile="(Default)">C:\Users\Greg\Documents\Visual Studio 2012\Projects\EmuLister-master\EmuLister\ume\ume.exe</Value>
+      <Value Profile="(Default)">E:\UME\ume.exe</Value>
     </Setting>
     <Setting Name="WorkingPath" Type="System.String" Scope="User">
-      <Value Profile="(Default)">C:\Users\Greg\Documents\Visual Studio 2012\Projects\EmuLister-master\EmuLister\ume</Value>
+      <Value Profile="(Default)">E:\UME</Value>
     </Setting>
     <Setting Name="PublisherColor" Type="System.Drawing.Color" Scope="User">
       <Value Profile="(Default)">0, 192, 192</Value>
+    </Setting>
+    <Setting Name="MarginTop" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">20</Value>
+    </Setting>
+    <Setting Name="MarginBottom" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">20</Value>
+    </Setting>
+    <Setting Name="MarginLeft" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">20</Value>
+    </Setting>
+    <Setting Name="MarginRight" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">20</Value>
+    </Setting>
+    <Setting Name="PagerColor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Yellow</Value>
     </Setting>
   </Settings>
 </SettingsFile>

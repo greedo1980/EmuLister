@@ -84,6 +84,12 @@ namespace EmuLister
         }
 
 
+        public static List<string> AllPublishers
+        {
+            get {
+                return AllRoms().OrderBy(r => r.Publisher).Select(p => p.Publisher).Distinct().ToList();
+            }
+        }
 
         public static string FirstPublisher()
         {
@@ -97,6 +103,13 @@ namespace EmuLister
             List<Rom> roms = AllRoms();
 
             return roms.OrderBy(r => r.Publisher).Last().Publisher;
+        }
+
+        public static int TotalPagesForPublisher(string publisher, int pageSize)
+        {
+            int publisherRomCount = AllRoms().Where(p => p.Publisher == publisher).Count();
+
+            return (publisherRomCount / pageSize) +1;
         }
 
         public static string NextPublisher(string publisher)

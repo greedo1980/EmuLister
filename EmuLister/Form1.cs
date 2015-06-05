@@ -30,8 +30,7 @@ namespace EmuLister
             }
         }
 
-      
-
+   
         int LastPageIndex
         {
             get {
@@ -98,7 +97,7 @@ namespace EmuLister
 
         float ListFontSize {
             get { 
-                return (ListPanelSize.Height / PageSize) * 0.6f; 
+                return (ListPanelSize.Height / PageSize) * 0.65f; 
             }
         }
 
@@ -153,21 +152,121 @@ namespace EmuLister
         {
             CurrentPublisher = publisher;
 
-            PublisherPanel.Height = (int)((float)ScreenSize.Height * 0.12f);
-
             PublisherPanel.Controls.Clear();
 
             Label publisherLabel = new Label();
 
-            publisherLabel.Font = listFont;
             publisherLabel.Font = new Font(listFont.FontFamily, ListFontSize * 2f);
             publisherLabel.Text = CurrentPublisher;
             publisherLabel.ForeColor = Settings.Default.PublisherColor;
             publisherLabel.TextAlign = ContentAlignment.MiddleCenter;
             publisherLabel.Height = PublisherPanel.Height;
             publisherLabel.Width = PublisherPanel.Width;
+            publisherLabel.Location = new Point(0, 0);
+
+          
 
             PublisherPanel.Controls.Add(publisherLabel);
+        }
+
+        private void DrawRomList(string publisher, int requestedPageIndex)
+        {
+            List<Rom> roms = GetRoms(publisher, requestedPageIndex);
+
+            if (roms.Count == 0 && requestedPageIndex > currentPage)
+            {
+                DrawRomList(publisher, 0);
+               
+                return;
+            }
+            else if (roms.Count == 0 && requestedPageIndex < currentPage)
+            {
+                DrawRomList(publisher, LastPageIndex);
+                return;
+            }
+            else
+                currentPage = requestedPageIndex;
+
+            int y = 0;
+            int count = 0;
+
+            ListPanel.Controls.Clear();
+
+            foreach (Rom rom in roms)
+            {
+
+                LinkLabel linkLabel = new LinkLabel();
+                linkLabel.Text = ClipRomTitle(rom.Title);
+
+                if (Settings.Default.UpperCaseList)
+                    linkLabel.Text = linkLabel.Text.ToUpper();
+
+                if (!string.IsNullOrEmpty(rom.Year))
+                    linkLabel.Text += " (" + rom.Year + ")";
+
+                linkLabel.Tag = rom.RomFile;
+                linkLabel.Location = new Point(0, y);
+
+                linkLabel.GotFocus += label_GotFocus;
+                linkLabel.PreviewKeyDown += linkLabel_PreviewKeyDown;
+
+                linkLabel.Font = listFont;
+
+                linkLabel.Height = ListLabelHeight;
+                linkLabel.Width = ScreenSize.Width;
+                linkLabel.TextAlign = ContentAlignment.MiddleCenter;
+                linkLabel.LinkBehavior = LinkBehavior.NeverUnderline;
+
+                linkLabel.ActiveLinkColor =
+                    linkLabel.LinkColor = ListColor;
+
+                ListPanel.Controls.Add(linkLabel);
+
+                y += Convert.ToInt32(ListFontSize + ListSpacingSize);
+                count++;
+            }
+
+            Debug.Print(string.Format("ListPanelSize W{0} W{1}", ListPanelSize.Width, ListPanelSize.Height));
+
+            DrawFooter();
+        }
+
+        private void DrawFooter()
+        {
+            FooterPanel.Controls.Clear();
+            
+            Label pagerLabel = new Label();
+            pagerLabel.Font = listFont;
+
+            pagerLabel.ForeColor = Settings.Default.PagerColor;
+
+            pagerLabel.Height = FooterPanel.Height;
+            pagerLabel.Width = panel1.Width / 2;
+            pagerLabel.TextAlign = ContentAlignment.MiddleLeft;
+            pagerLabel.Location = new Point(0, 0);
+
+            pagerLabel.Text = "Page " + (currentPage + 1) + " of " + Rom.TotalPagesForPublisher(CurrentPublisher, PageSize) ;
+
+            FooterPanel.Controls.Add(pagerLabel);
+
+
+            Label publisherLabel = new Label();
+
+            publisherLabel.Font = listFont;
+            
+            publisherLabel.ForeColor = Settings.Default.PagerColor;
+
+            publisherLabel.Height = FooterPanel.Height;
+            publisherLabel.Width = panel1.Width / 2;
+            publisherLabel.TextAlign = ContentAlignment.MiddleRight;
+            publisherLabel.Location = new Point(PublisherPanel.Width/2, 0);
+
+            publisherLabel.Text = "Publisher " + (Rom.AllPublishers.IndexOf(CurrentPublisher) + 1) + " of " 
+                + Rom.AllPublishers.Count;
+
+            FooterPanel.Controls.Add(publisherLabel);
+
+
         }
 
         private void DrawNoRoms()
@@ -187,68 +286,7 @@ namespace EmuLister
             return result;
         }
 
-        private void DrawRomList(string publisher, int requestedPageIndex)
-        {
-            List<Rom> roms = GetRoms(publisher, requestedPageIndex);
-
-            if (roms.Count == 0 && requestedPageIndex > currentPage)
-            {
-                DrawRomList(publisher, 0);
-                return;
-            }
-            else if (roms.Count == 0 && requestedPageIndex < currentPage)
-            {
-                DrawRomList(publisher, LastPageIndex);
-                return;
-            }
-            else
-                currentPage = requestedPageIndex;
-
-            int y = 0;
-            int count = 0;
-
-            ListPanel.Height = (int)((float)ScreenSize.Height * 0.78f);
-            ListPanel.Location = new Point(ListPanel.Location.X, PublisherPanel.Location.Y + PublisherPanel.Height);
-            ListPanel.Controls.Clear();
-
-            foreach (Rom rom in roms)
-            {
-
-                LinkLabel linkLabel = new LinkLabel();
-                linkLabel.Text = ClipRomTitle(rom.Title);
-
-                if (Settings.Default.UpperCaseList)
-                    linkLabel.Text = linkLabel.Text.ToUpper() ;
-
-                if (!string.IsNullOrEmpty(rom.Year))
-                    linkLabel.Text += " (" + rom.Year + ")";
-
-                linkLabel.Tag = rom.RomFile;
-                linkLabel.Location = new Point(0, y);
-
-                linkLabel.GotFocus += label_GotFocus;
-                linkLabel.PreviewKeyDown += linkLabel_PreviewKeyDown;
-
-                linkLabel.Font = listFont;
-
-                linkLabel.Height = ListLabelHeight;
-                linkLabel.Width = ScreenSize.Width;
-                linkLabel.TextAlign = ContentAlignment.MiddleCenter;
-                linkLabel.LinkBehavior = LinkBehavior.NeverUnderline;
-
-                linkLabel.ActiveLinkColor = 
-                    linkLabel.LinkColor = ListColor;
-           
-                ListPanel.Controls.Add(linkLabel);
-                
-                y += Convert.ToInt32(ListFontSize + ListSpacingSize);
-                count++;
-            }
-
-            Debug.Print(string.Format("ListPanelSize W{0} W{1}", ListPanelSize.Width, ListPanelSize.Height));
-
-        }
-
+      
         private string ClipRomTitle(string title)
         {
             string result = title;
@@ -397,10 +435,14 @@ namespace EmuLister
         }
 
         private void Form1_Resize(object sender, EventArgs e)
-        {    
+        {
+            ResizePanel();
+
             DrawPublisher(CurrentPublisher);
         
             DrawRomList(CurrentPublisher, currentPage);
+
+            DrawFooter();
 
         }
 
@@ -420,6 +462,38 @@ namespace EmuLister
 
                     counter++;
             } 
+        }
+
+        protected void ResizePanel()
+        {
+            int x = 0;
+            int y = 0;
+
+            if (Settings.Default.MarginLeft > 0)
+                x = (int)(Settings.Default.MarginLeft);
+
+            if (Settings.Default.MarginTop > 0)
+                y = (int)(Settings.Default.MarginTop);
+
+            panel1.Location = new Point(x, y);
+
+            int heightOffset = (int)(Settings.Default.MarginTop + Settings.Default.MarginBottom);
+            int widthOffset = (int)(Settings.Default.MarginLeft + Settings.Default.MarginRight);
+
+            panel1.Width = this.Width - widthOffset;
+            panel1.Height = this.Height - heightOffset;
+
+            PublisherPanel.Location = new Point(0, 0);
+            PublisherPanel.Width = panel1.Width;
+            PublisherPanel.Height = (int)(panel1.Height * 0.12d);
+
+            ListPanel.Location = new Point(0, PublisherPanel.Height);
+            ListPanel.Width = panel1.Width;
+            ListPanel.Height = (int)(panel1.Height * 0.8f);
+
+            FooterPanel.Location = new Point(0, ListPanel.Location.Y + ListPanel.Height);
+            FooterPanel.Width = panel1.Width;
+            FooterPanel.Height = (int)(panel1.Height * 0.08d);
         }
     }
 }
